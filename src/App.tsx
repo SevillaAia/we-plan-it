@@ -1,15 +1,14 @@
-import { useState } from 'react'
-import Header from './components/Header.tsx'
+import Header from './components/Header'
+import Planner from './components/Planner'
 
 function App() {
-
-
   return (
-    <>
-      <div>
-        <Header />
-        </div>
-    </>
+    <div className="app">
+      <Header />
+      <main>
+        <Planner />
+      </main>
+    </div>
   )
 }
 
