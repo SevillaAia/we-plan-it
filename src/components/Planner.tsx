@@ -21,7 +21,14 @@ function Planner() {
       setLoading(true);
       setError(null);
       const data = await planService.getAll();
-      setPlans(data);
+      // Ensure data is always an array
+      if (Array.isArray(data)) {
+        setPlans(data);
+      } else {
+        setPlans([]);
+        setError('Fetched plans are not an array.');
+        console.error('Fetched plans are not an array:', data);
+      }
     } catch (err) {
       setError('Failed to fetch plans. Please try again.');
       console.error('Fetch error:', err);
