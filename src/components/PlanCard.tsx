@@ -29,6 +29,9 @@ function PlanCard({ plan, onEdit, onDelete, onToggleComplete }: PlanCardProps) {
           </span>
         </div>
         <p className="plan-description">{plan.description || 'No description'}</p>
+        {plan.address && <p className="plan-address">📍 {plan.address}</p>}
+        {plan.telephone && <p className="plan-telephone">📞 {plan.telephone}</p>}
+        {plan.email && <p className="plan-email">✉️ {plan.email}</p>}
         <p className="plan-due-date">📅 Due: {plan.dueDate ? new Date(plan.dueDate).toLocaleDateString() : 'No due date'}</p>
         <div className="plan-actions">
           <button 

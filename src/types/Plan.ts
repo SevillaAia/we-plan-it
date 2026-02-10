@@ -5,5 +5,8 @@ export interface Plan {
   dueDate: string | null;
   priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT';
   completed: boolean;
+  address: string | null;
+  telephone: string | null;
+  email: string | null;
   createdAt: Date;
 }

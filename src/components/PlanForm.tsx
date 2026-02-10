@@ -12,6 +12,9 @@ function PlanForm({ onSubmit, editingPlan, onCancelEdit }: PlanFormProps) {
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [priority, setPriority] = useState<'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT'>('MEDIUM');
+  const [address, setAddress] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -20,6 +23,9 @@ function PlanForm({ onSubmit, editingPlan, onCancelEdit }: PlanFormProps) {
       setDescription(editingPlan.description || '');
       setDueDate(editingPlan.dueDate || '');
       setPriority(editingPlan.priority);
+      setAddress(editingPlan.address || '');
+      setTelephone(editingPlan.telephone || '');
+      setEmail(editingPlan.email || '');
     } else {
       resetForm();
     }
@@ -30,6 +36,9 @@ function PlanForm({ onSubmit, editingPlan, onCancelEdit }: PlanFormProps) {
     setDescription('');
     setDueDate('');
     setPriority('MEDIUM');
+    setAddress('');
+    setTelephone('');
+    setEmail('');
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,7 +55,10 @@ function PlanForm({ onSubmit, editingPlan, onCancelEdit }: PlanFormProps) {
         description: description.trim() || null,
         dueDate: dueDate || null,
         priority,
-        completed: editingPlan?.completed || false
+        completed: editingPlan?.completed || false,
+        address: address.trim() || null,
+        telephone: telephone.trim() || null,
+        email: email.trim() || null
       });
 
       resetForm();
@@ -94,6 +106,41 @@ function PlanForm({ onSubmit, editingPlan, onCancelEdit }: PlanFormProps) {
           placeholder="Enter plan description..."
           rows={3}
         />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="address">Address</label>
+        <input
+          type="text"
+          id="address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder="Enter address..."
+        />
+      </div>
+
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="telephone">Telephone</label>
+          <input
+            type="tel"
+            id="telephone"
+            value={telephone}
+            onChange={(e) => setTelephone(e.target.value)}
+            placeholder="Enter telephone number..."
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter email address..."
+          />
+        </div>
       </div>
 
       <div className="form-row">
