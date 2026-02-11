@@ -3,6 +3,7 @@ import type { Plan } from '../types/Plan';
 import PlanCard from './PlanCard';
 import PlanForm from './PlanForm';
 import planService from '../services/planService';
+import WeatherForecast from './WeatherForecast';
 
 function Planner() {
   const [plans, setPlans] = useState<Plan[]>([]);
@@ -109,7 +110,10 @@ function Planner() {
   return (
     <div className="planner">
       {error && <div className="planner-error">{error}</div>}
-      
+
+    
+
+        <WeatherForecast />       
       <PlanForm 
         onSubmit={handleAddPlan} 
         editingPlan={editingPlan}

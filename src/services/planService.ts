@@ -5,7 +5,7 @@ import type { Plan } from '../types/Plan';
 
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5005/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -15,7 +15,7 @@ export const planService = {
   // Get all plans
   async getAll(): Promise<Plan[]> {
     try {
-      const response = await api.get<Plan[]>('/api/plans');
+      const response = await api.get<Plan[]>('/plans');
       return response.data;
     } catch (error) {
       console.error('Error fetching plans:', error);
@@ -26,7 +26,7 @@ export const planService = {
   // Get a single plan by ID
   async getById(id: string): Promise<Plan> {
     try {
-      const response = await api.get<Plan>(`/api/plans/${id}`);
+      const response = await api.get<Plan>(`/plans/${id}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching plan:', error);
@@ -38,7 +38,7 @@ export const planService = {
   async create(plan: Omit<Plan, 'id' | 'createdAt'>): Promise<Plan> {
     try {
       console.log('Creating plan with data:', plan);
-      const response = await api.post<Plan>('/api/plans', plan);
+      const response = await api.post<Plan>('/plans', plan);
       return response.data;
     } catch (error: any) {
       console.error('Error creating plan:', error);
@@ -53,7 +53,7 @@ export const planService = {
   // Update an existing plan
   async update(id: string, plan: Partial<Plan>): Promise<Plan> {
     try {
-      const response = await api.put<Plan>(`/api/plans/${id}`, plan);
+      const response = await api.put<Plan>(`/plans/${id}`, plan);
       return response.data;
     } catch (error) {
       console.error('Error updating plan:', error);
@@ -64,7 +64,7 @@ export const planService = {
   // Delete a plan
   async delete(id: string): Promise<void> {
     try {
-      await api.delete(`/api/plans/${id}`);
+      await api.delete(`/plans/${id}`);
     } catch (error) {
       console.error('Error deleting plan:', error);
       throw error;
@@ -74,7 +74,7 @@ export const planService = {
   // Toggle plan completion
   async toggleComplete(id: string, completed: boolean): Promise<Plan> {
     try {
-      const response = await api.patch<Plan>(`/api/plans/${id}`, { completed });
+      const response = await api.patch<Plan>(`/plans/${id}`, { completed });
       return response.data;
     } catch (error) {
       console.error('Error toggling plan completion:', error);
