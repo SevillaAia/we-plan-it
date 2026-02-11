@@ -111,9 +111,7 @@ function Planner() {
     <div className="planner">
       {error && <div className="planner-error">{error}</div>}
 
-    
-
-        <WeatherForecast />       
+      <WeatherForecast />       
       <PlanForm 
         onSubmit={handleAddPlan} 
         editingPlan={editingPlan}
