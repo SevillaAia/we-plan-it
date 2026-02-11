@@ -1,3 +1,13 @@
+// WeatherForecast interface for weather feature
+export interface WeatherForecast {
+  id: string;
+  date: string; // ISO string
+  location: string;
+  temperature: number;
+  description?: string;
+  createdAt: string; // ISO string
+  updatedAt: string; // ISO string
+}
 export interface Plan {
   id: string;
   title: string;
