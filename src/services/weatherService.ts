@@ -1,7 +1,7 @@
 // src/services/weatherService.ts
 // Service to fetch weather data from OpenWeatherMap API
 
-const API_KEY = "3c1f82a057d99781fe4437fdb472014d"; // Replace with your API key
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 export interface WeatherData {
