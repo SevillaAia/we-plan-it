@@ -5,7 +5,7 @@ import type { Plan } from '../types/Plan';
 
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5005/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -72,9 +72,9 @@ export const planService = {
   },
 
   // Toggle plan completion
-  async toggleComplete(id: string, completed: boolean): Promise<Plan> {
+  async toggleComplete(id: string): Promise<Plan> {
     try {
-      const response = await api.patch<Plan>(`/api/plans/${id}`, { completed });
+      const response = await api.patch<Plan>(`/api/plans/${id}/toggle`);
       return response.data;
     } catch (error) {
       console.error('Error toggling plan completion:', error);

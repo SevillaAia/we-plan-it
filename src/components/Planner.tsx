@@ -85,7 +85,7 @@ function Planner() {
       setError(null);
       const plan = plans.find(p => p.id === id);
       if (plan) {
-        const updatedPlan = await planService.toggleComplete(id, !plan.completed);
+        const updatedPlan = await planService.toggleComplete(id);
         setPlans(plans.map(p => p.id === id ? updatedPlan : p));
       }
     } catch (err) {
